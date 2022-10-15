@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>google calendar clone!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 2rem;
+            font-family: sans-serif;
+        }
+
+        body.no-scroll {
+            overflow-y: hidden;
+
+        }
+
+        .action-containaer {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2em;
+            align-items: center;
+
+        }
+
+        .action-containaer button {
+            background: transparent;
+            padding: 0.5em;
+            font-size: 1rem;
+            border: 1px solid black;
+            text-transform: capitalize;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .action-containaer button:hover {
+            background-color: rgba(57, 185, 113, 0.81);
+            color: white;
+            border-color: transparent;
+        }
+
+        .action-containaer button[data-prevMonthBtn],
+        .action-containaer button[data-nextMonthBtn] {
+            border-width: 0;
+        }
+
+        .calendar-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+
+        .smooth-scale {
+            transition: scale 1s;
+        }
+
+        .scale-1 {
+            scale: 1;
+        }
+
+        .scale-0 {
+            scale: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <template id="calendarDay">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            [data-calendarDate]:has([data-addEventBtn]) {
+                padding: 0.3rem 0.3rem 1rem;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+
+                min-width: 100px;
+                min-height: 200px;
+                border: 1px solid lightgray;
+                text-align: center;
+                background-color: rgb(221, 221, 221);
+            }
+
+            [data-calendarDate].current {
+                background-color: #fff;
+            }
+
+            [data-addEventBtn] {
+                align-self: flex-end;
+                width: 20px;
+                height: 20px;
+            }
+
+            [data-eventsList] {
+                display: flex;
+                flex-direction: column;
+                list-style-type: none;
+                gap: 0.5rem;
+                padding-left: .3rem;
+                padding-right: .3rem;
+                margin-top: .6rem;
+            }
+
+            .dateInfo {
+                display: flex;
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+
+
+            [data-calendarDate] .hidden {
+                display: none;
+            }
+
+            button:has(span[data-amountLeft]) {
+                margin-top: 1rem;
+                background-color: rgba(128, 128, 128, 0.363);
+                border: none;
+                outline: none;
+                padding: 0.2em;
+                width: 50%;
+                align-self: center;
+                color: black;
+                pointer-events: none;
+            }
+
+            span[data-amountLeft] {
+                display: inline;
+            }
+
+            [data-addEventBtn] {
+                opacity: 0;
+                border: 1px solid black;
+                border-color: transparent;
+                font-size: 1rem;
+                font-weight: bold;
+                background-color: transparent;
+                pointer-events: none;
+                transition: opacity .2s, border-color .5s;
+                cursor: pointer;
+            }
+
+            [data-calendarDate]:hover [data-addEventBtn] {
+                opacity: 1;
+                pointer-events: all;
+                border-color: black;
+            }
+        </style>
+        <div data-calendarDate>
+            <button data-addEventBtn>+</button>
+            <div class="dateInfo">
+                <div data-dayOfWeek></div>
+                <div data-dayOfMonth></div>
+            </div>
+            <div class="eventsList" data-eventsList>
+            </div>
+            <button class="hidden">+ <span data-amountLeft>0</span> more</button>
+
+        </div>
+    </template>
+
+
+    <div class="action-containaer">
+        <button data-todayBtn>
+            today
+        </button>
+        <button data-prevMonthBtn>
+            < </button>
+                <button data-nextMonthBtn>
+                    >
+                </button>
+                <h2 data-calendarSelected></h2>
+    </div>
+    <div class="calendar-container" data-days-container></div>
+</body>
+
+</html>

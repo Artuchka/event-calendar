@@ -1,0 +1,65 @@
+<template id="eventAllDay">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .event {
+            --bgColor: blue;
+            background-color: var(--bgColor);
+            color: white;
+            border-radius: .15rem;
+            padding: 0.4rem;
+            width: 100%;
+            text-align: center;
+            /* text-align: left; */
+            /* text-indent: .3rem; */
+        }
+    </style>
+    <div class="event">
+        <span class="info" data-info>
+            info is here
+        </span>
+    </div>
+</template>
+
+
+<template id="eventCertain">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .event {
+            --bgColor: blue;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .event .circle {
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            background-color: var(--bgColor, red);
+        }
+
+        .event .time {
+            color: gray;
+        }
+    </style>
+    <div class="event">
+        <div class="circle"></div>
+        <time class="time" data-time>
+
+        </time>
+        <span class="info" data-info>
+
+        </span>
+    </div>
+</template>
