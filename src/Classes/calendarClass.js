@@ -56,6 +56,10 @@ export class Calendar {
 		return isSameMonth(this.date, date)
 	}
 
+	get nowDate() {
+		return getUnixTime(startOfDay(new Date()))
+	}
+
 	get dayOfMonth() {
 		return getDate(this.date)
 	}

@@ -31,6 +31,7 @@ export function updateCalendar() {
 
 function populateMonth(dates) {
 	daysContainer.textContent = ""
+	const currentDay = currentCalendar.nowDate
 	dates.forEach(({ dayOfMonth, dayOfWeek, isCurrent, dayId }) => {
 		const day = calendarDayTemplate.content.cloneNode(true)
 		if (dayOfWeek) {
@@ -39,8 +40,12 @@ function populateMonth(dates) {
 		day.querySelector("[data-dayOfMonth]").textContent = dayOfMonth
 		const parent = day.querySelector("[data-calendarDate]")
 		parent.setAttribute("data-calendarDate", dayId.toString())
+
 		if (isCurrent) {
 			parent.classList.add("current")
+		}
+		if (currentDay == dayId) {
+			parent.classList.add("current-day")
 		}
 		daysContainer.appendChild(day)
 	})
